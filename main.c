@@ -12,19 +12,26 @@
 
 #include "minishell.h"
 
-int	main(void)
+void	minishell(void)
 {
 	char	*line;
-	int		x;
 
-	x = 0;
-	while (x < 5)
+	rl_on_new_line();
+	line = readline(PROMPT);
+	add_history(line);
+}
+
+int	main(int ac, char **av)
+{
+	if (ac == 1 && !ft_strncmp(av[0], "./minishell", 12))
 	{
-		line = readline(PROMPT);
-		add_history(line);
-		free(line);
-		x++;
+		while (1)
+		{
+			minishell();
+		}
 	}
+	else
+		printf("minishell must be run as a standalone command ex: ./minishell\n");
 	clear_history();
 	return (0);
 }
