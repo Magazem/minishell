@@ -1,12 +1,15 @@
-.SILENT: ${NAME} ${LIBFT}
+.SILENT: ${NAME}
 
-SRCS = main.c
-OBJS := $(SRCS:%.c=%.o)
-HEADER = minishell.h
+SRCSDIR = ./srcs
+SRCS =  main.c signals.c
+OBJDIR = ./objs
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+HEADER = ./includes/minishell.h
 NAME = minishell
 
 LIBFT		= ./libft/libft.a
 LIBFTDIR	= ./libft
+LIBFT_URL = https://github.com/Magazem/libft.git  
 
 cc = gcc
 RM = rm -f
@@ -26,22 +29,31 @@ CYAN 		= \033[0;36m
 all: ${NAME}
 
 ${NAME}: ${LIBFT} ${OBJS}
-	@${CC} -g ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} -L./libft -lft	
+	@${CC} -g ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} -L./libft -lft
 	@echo "$(CYAN)OBJS compiling..."
 	@echo "$(RED)$(BOLD)⤙ minishell: $(GREEN)compiled and ready $(LIGHT_YELLOW)[$(GREEN)✔$(LIGHT_YELLOW)]$(RED)$(BOLD) ⤚"
 
-$(LIBFT):	$(LIBFTDIR)
-				@$(MAKE) -C $(LIBFTDIR)
+$(OBJDIR)/%.o: $(SRCSDIR)/%.c $(HEADER)
+	@mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT): $(LIBFTDIR)
+	@$(MAKE) --no-print-directory bonus -C $(LIBFTDIR)
+
+$(LIBFTDIR):
+	@echo "$(CYAN)Downloading libft...$(NORMAL)"
+	git clone -q $(LIBFT_URL) $(LIBFTDIR)
+	@echo "$(GREEN)Libft downloaded successfully$(NORMAL)"
 
 clean:
-	@$(MAKE) clean -C $(LIBFTDIR)
-	@${RM}	${OBJS} 
+	@$(MAKE) -s clean -C $(LIBFTDIR) 2>/dev/null || true
+	@${RM} -r $(OBJDIR)
 	@echo "$(RED)$(CUT)cleaning OBJS 🗑"
 
 fclean:	clean
-		@$(MAKE) fclean -C $(LIBFTDIR)
-		@${RM} ${NAME}
-		@echo "$(RED)$(UP)cleaning everything 💣"
+	@${RM} -r $(LIBFTDIR)
+	@${RM} ${NAME}
+	@echo "$(RED)$(UP)cleaning everything 💣"
 
 re: fclean all
 
