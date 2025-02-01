@@ -12,3 +12,24 @@
 
 #include "../includes/minishell.h"
 
+int	is_special_char(char c)
+{
+	return (c == '|' || c == '<' || c == '>' || c == '\'' || c == '\"'
+		|| c == ' ' || c == '\t' || c == '\n');
+}
+
+char	*getword(char *line, int i)
+{
+	int		start;
+	char	*word;
+
+	start = i;
+	while (line[i] && !isspeacial_character(word[i]))
+		i++;
+	word = ft_substr(line, start, i - start);
+	return (word);
+}
+
+void	lexer(char *line)
+{
+}
