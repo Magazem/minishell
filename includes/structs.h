@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysuliman <marvin@42.fr>                    #+#  +:+       +#+        */
+/*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-31 15:27:03 by ysuliman          #+#    #+#             */
-/*   Updated: 2025-01-31 15:27:03 by ysuliman         ###   ########.fr       */
+/*   Created: 2025/01/31 15:27:03 by ysuliman          #+#    #+#             */
+/*   Updated: 2025/02/01 18:18:30 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 # include "minishell.h"
+
 //      ############## LEXER STRUCTS ############## //
 
 typedef enum e_token_type

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysuliman <marvin@42.fr>                    #+#  +:+       +#+        */
+/*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-31 16:14:51 by ysuliman          #+#    #+#             */
-/*   Updated: 2025-01-31 16:14:51 by ysuliman         ###   ########.fr       */
+/*   Created: 2025/01/31 16:14:51 by ysuliman          #+#    #+#             */
+/*   Updated: 2025/02/01 19:53:40 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ char	*getword(char *line, int i)
 	return (word);
 }
 
-void	lexer(char *line)
+t_token	**lexer(char *input)
 {
+	int i;
+	t_token **tokens;
+	// Initialize token list, index i, etc.
+	while (input[i])
+	{
+		if (input[i] == '\'')
+			*get_singlequoted(input, &i);
+		else if (input[i] == '\"')
+			get_doublequoted(input, &i);
+		else if (is_operator(input[i]))
+		{
+			// Handle token operators accordingly.
+		}
+		else if (is_whitespace(input[i]))
+		{
+			i++;
+		}
+		else
+		{
+			getword(input, &i);
+		}
+	}
+	// Append TOKEN_EOF at the end.
+	return (tokens);
 }

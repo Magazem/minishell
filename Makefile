@@ -11,10 +11,10 @@ LIBFT		= ./libft/libft.a
 LIBFTDIR	= ./libft
 LIBFT_URL = https://github.com/Magazem/libft.git  
 
-cc = gcc
+cc = clang
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra 
-LDFLAGS = -lreadline
+LDFLAGS =  -lreadline -ltinfo
 
 #Colors
 GREEN		= \033[0;32m
@@ -29,7 +29,7 @@ CYAN 		= \033[0;36m
 all: ${NAME}
 
 ${NAME}: ${LIBFT} ${OBJS}
-	@${CC} -g ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME} -L./libft -lft
+	${cc} -g $(OBJS) -L./libft -lft $(LDFLAGS) -o $(NAME)
 	@echo "$(CYAN)OBJS compiling..."
 	@echo "$(RED)$(BOLD)⤙ minishell: $(GREEN)compiled and ready $(LIGHT_YELLOW)[$(GREEN)✔$(LIGHT_YELLOW)]$(RED)$(BOLD) ⤚"
 

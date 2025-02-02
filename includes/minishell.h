@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ysuliman <marvin@42.fr>                    #+#  +:+       +#+        */
+/*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-01-24 10:40:11 by ysuliman          #+#    #+#             */
-/*   Updated: 2025-01-24 10:40:11 by ysuliman         ###   ########.fr       */
+/*   Created: 2025/01/24 10:40:11 by ysuliman          #+#    #+#             */
+/*   Updated: 2025/02/01 19:50:14 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../libft/libft.h"
-#include "structs.h"
+# include "structs.h"
 # include <curses.h>
 # include <dirent.h>
 # include <errno.h>
@@ -33,4 +33,6 @@
 # define PROMPT "minishell% "
 
 void	signal_init(void);
+char	*get_singlequoted(char *input, int *i);
+char	*get_doublequoted(char *input, int *i);
 #endif
