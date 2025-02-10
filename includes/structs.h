@@ -6,7 +6,7 @@
 /*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 15:27:03 by ysuliman          #+#    #+#             */
-/*   Updated: 2025/02/01 18:18:30 by ysuliman         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:54:43 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ typedef struct s_token
 	t_token_type	type;
 	char			*token;
 }					t_token;
+
+typedef struct s_data
+{
+	t_list *lexer;
+}	 t_data;
 
 #endif

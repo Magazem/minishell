@@ -6,7 +6,7 @@
 /*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:40:11 by ysuliman          #+#    #+#             */
-/*   Updated: 2025/02/01 19:50:14 by ysuliman         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:58:44 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <unistd.h>
 # define PROMPT "minishell% "
 
+t_list	*lexer(char *input);
 void	signal_init(void);
 char	*get_singlequoted(char *input, int *i);
 char	*get_doublequoted(char *input, int *i);
