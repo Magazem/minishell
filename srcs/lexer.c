@@ -83,7 +83,6 @@ t_list	*lexer(char *input)
 		else
 			token = getword(input, &i);
 		append_token(&list, token);
-		count++;
 	}
 	append_token(&list, get_token('\0', &i));
 	return (list);

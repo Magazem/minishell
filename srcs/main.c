@@ -19,13 +19,13 @@ void	minishell(t_data *data)
 	signal_init();
 	rl_on_new_line();
 	line = readline(PROMPT);
-	data->lexer = lexer(line);
 	if (line == NULL)
 	{
 		printf("exit\n");
 		free(line);
 		exit(0);
 	}
+	data->lexer = lexer(line);
 	print_token_list(data->lexer);
 	add_history(line);
 }

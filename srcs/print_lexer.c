@@ -14,32 +14,26 @@
 
 const char	*token_type_to_str(t_token_type type)
 {
-	const char		*type_strings[] = {"TOKEN_REDIR_OUT", "TOKEN_REDIR_IN",
-				"TOKEN_WORD", "TOKEN_SPACE", "TOKEN_PIPE", "TOKEN_DQUOTE",
-				"TOKEN_SQUOTE", "TOKEN_EOF"};
-	t_token_type	i;
+	const char	*type_strings[] = {"TOKEN_REDIR_OUT", "TOKEN_REDIR_IN",
+			"TOKEN_WORD", "TOKEN_SPACE", "TOKEN_PIPE", "TOKEN_DQUOTE",
+			"TOKEN_SQUOTE", "TOKEN_EOF"};
 
-	i = 0;
-	while (i <= TOKEN_EOF)
-	{
-		if (i == type)
-			return (type_strings[i]);
-		i++;
-	}
-	return ("UNKNOWN_TYPE");
+	return (type <= TOKEN_EOF ? type_strings[type] : "UNKNOWN_TYPE");
 }
 
 void	print_token_list(t_list *list)
 {
-	t_list	*current;
-	t_token	*token;
+	t_list		*current;
+	t_token		*token;
+	const char	*content;
 
 	current = list;
 	while (current != NULL)
 	{
 		token = (t_token *)current->content;
+		content = token->token ? token->token : "(null)"; // Use value field
 		printf("Type: %-15s | Content: %s\n", token_type_to_str(token->type),
-			token->token ? token->token : "(null)");
+			content);
 		if (token->type == TOKEN_EOF)
 			break ;
 		current = current->next;
