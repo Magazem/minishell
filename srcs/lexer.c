@@ -12,6 +12,24 @@
 
 #include "../includes/minishell.h"
 
+t_token	*get_token(char input, int *i)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	token->token = &input;
+	if (input == '\'')
+		token->type = TOKEN_SQUOTE;
+	else if (input == '\"')
+		token->type = TOKEN_DQUOTE;
+	else if (input == '\0')
+		token->type = TOKEN_EOF;
+	else if (input == ' ')
+		token->type = TOKEN_SPACE;
+	(*i)++;
+	return (token);
+}
+
 void	append_token(t_list **list, t_token *token)
 {
 	t_list	*new_node;
@@ -23,44 +41,50 @@ void	append_token(t_list **list, t_token *token)
 int	is_special_char(char c)
 {
 	return (c == '|' || c == '<' || c == '>' || c == '\'' || c == '\"'
-		|| c == ' ' || c == '\t' || c == '\n');
+		|| c == ' ');
 }
 
-char	*getword(char *line, int i)
+t_token	*getword(char *line, int *i)
 {
 	int		start;
-	char	*word;
+	t_token	*word;
 
-	start = i;
-	while (line[i] && !isspeacial_character(word[i]))
-		i++;
-	word = ft_substr(line, start, i - start);
+	word = malloc(sizeof(t_token));
+	if (!word)
+		return (NULL);
+	start = *i;
+	while (line[*i] && !is_special_char(line[*i]))
+		(*i)++;
+	word->token = ft_substr(line, start, *i - start);
+	word->type = TOKEN_WORD;
 	return (word);
 }
 
 t_list	*lexer(char *input)
 {
 	int		i;
+	int		count;
 	t_list	*list;
 	t_token	*token;
 
-	token = malloc(sizeof(t_token));
 	i = 0;
+	count = 0;
+	list = NULL;
 	while (input[i])
 	{
 		if (input[i] == '\'')
-			token = TOKEN_SQUOTE;
+			token = get_token('\'', &i);
 		else if (input[i] == '\"')
-			token = TOKEN_DQUOTE;
+			token = get_token('\"', &i);
 		else if (is_operator(input[i]))
-			token = NULL; // appended to NULL until we have a suitable function
-		else if (is_whitespace(input[i]))
-			token = NULL; // appended to NULL until we have a suitable function
+			token = get_operator(&input[i], &i);
+		else if (input[i] == ' ')
+			token = get_token(' ', &i);
 		else
 			token = getword(input, &i);
-		append_token(list, token);
-		i++;
+		append_token(&list, token);
+		count++;
 	}
-	append_token(list, TOKEN_EOF);
+	append_token(&list, get_token('\0', &i));
 	return (list);
 }

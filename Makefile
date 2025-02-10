@@ -1,7 +1,7 @@
 .SILENT: ${NAME}
 
 SRCSDIR = ./srcs
-SRCS =  main.c signals.c
+SRCS =  main.c signals.c lexer.c lexer_helpers.c print_lexer.c
 OBJDIR = ./objs
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 HEADER = ./includes/minishell.h

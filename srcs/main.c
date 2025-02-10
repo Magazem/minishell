@@ -26,6 +26,7 @@ void	minishell(t_data *data)
 		free(line);
 		exit(0);
 	}
+	print_token_list(data->lexer);
 	add_history(line);
 }
 

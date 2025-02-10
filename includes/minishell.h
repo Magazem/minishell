@@ -34,6 +34,7 @@
 
 t_list	*lexer(char *input);
 void	signal_init(void);
-char	*get_singlequoted(char *input, int *i);
-char	*get_doublequoted(char *input, int *i);
+t_token	*get_operator(const char *input, int *i);
+int		is_operator(char c);
+void	print_token_list(t_list *list);
 #endif

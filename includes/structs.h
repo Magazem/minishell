@@ -36,7 +36,7 @@ typedef struct s_token
 
 typedef struct s_data
 {
-	t_list *lexer;
-}	 t_data;
+	t_list			*lexer;
+}					t_data;
 
 #endif
