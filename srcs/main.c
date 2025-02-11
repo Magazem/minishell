@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 		}
 	}
 	else
-		printf("minishell must be run as a standalone command ex: ./minishell\n");
+		printf("minishell must be run as ex: ./minishell\n");
 	clear_history();
 	return (0);
 }

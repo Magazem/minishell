@@ -29,6 +29,7 @@ void	ctrl_c(int signum)
 	(void)signum;
 	printf("\n");
 	rl_on_new_line();
+	rl_replace_line("", -1);
 	rl_redisplay();
 }
 

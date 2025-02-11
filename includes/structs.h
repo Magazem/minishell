@@ -39,4 +39,6 @@ typedef struct s_data
 	t_list			*lexer;
 }					t_data;
 
+//      ############## LEXER STRUCTS ############## //
+
 #endif
