@@ -24,7 +24,7 @@ t_token	*get_operator(const char *input, int *i)
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	token->token = ft_chrdup(input[*i]);s
+	token->token = ft_chrdup(input[*i]);
 	if (input[*i] == '<')
 		token->type = TOKEN_REDIR_IN;
 	else if (input[*i] == '>')
