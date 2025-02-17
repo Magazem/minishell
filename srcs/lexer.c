@@ -6,7 +6,7 @@
 /*   By: ysuliman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:14:51 by ysuliman          #+#    #+#             */
-/*   Updated: 2025/02/07 19:07:57 by ysuliman         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:57:14 by ysuliman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ t_token	*getword(char *line, int *i)
 t_list	*lexer(char *input)
 {
 	int		i;
-	int		count;
 	t_list	*list;
 	t_token	*token;
 
 	i = 0;
-	count = 0;
 	list = NULL;
 	while (input[i])
 	{
@@ -77,7 +75,7 @@ t_list	*lexer(char *input)
 		else if (input[i] == '\"')
 			token = get_token('\"', &i);
 		else if (is_operator(input[i]))
-			token = get_operator(&input[i], &i);
+			token = get_operator(input, &i);
 		else if (input[i] == ' ')
 			token = get_token(' ', &i);
 		else
