@@ -32,9 +32,16 @@
 # include <unistd.h>
 # define PROMPT "minishell% "
 
-t_list	*lexer(char *input);
-void	signal_init(void);
-t_token	*get_operator(const char *input, int *i);
-int		is_operator(char c);
-void	print_token_list(t_list *list);
+t_list			*lexer(char *input);
+void			signal_init(void);
+t_token			*get_operator(const char *input, int *i);
+int				is_operator(char c);
+void			print_token_list(t_list *list);
+t_token			*consume_token(t_list **tokens);
+char			**add_argument(char **args, char *arg);
+t_token_type	peek(t_list *tokens);
+t_command		*parse_command(t_list **tokens);
+void			print_ast(t_ast *ast);
+void			print_command(t_command *cmd);
+t_ast			*parse_body(t_list **tokens);
 #endif

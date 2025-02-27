@@ -15,6 +15,7 @@
 void	minishell(t_data *data)
 {
 	char	*line;
+	t_ast	*ast;
 
 	signal_init();
 	rl_on_new_line();
@@ -26,7 +27,15 @@ void	minishell(t_data *data)
 		exit(0);
 	}
 	data->lexer = lexer(line);
-	print_token_list(data->lexer);
+	ast = parse_body(&data->lexer);
+	if (ast)
+	{
+		print_ast(ast);
+	}
+	else
+	{
+		fprintf(stderr, "Parsing failed!\n");
+	}
 	add_history(line);
 }
 

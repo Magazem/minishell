@@ -39,6 +39,20 @@ typedef struct s_data
 	t_list			*lexer;
 }					t_data;
 
-//      ############## LEXER STRUCTS ############## //
+//      ############## PAERSER STRUCTS ############## //
+
+typedef struct s_command
+{
+	char **args;            // Command + arguments
+	char *input_file;       // From < or <<
+	char *output_file;      // From > or >>
+	struct s_command *next; // Next command in the pipeline (if any)
+}					t_command;
+
+typedef struct s_ast
+{
+	t_command *pipeline; // Commands connected via pipes
+	int background;      // & flag
+}					t_ast;
 
 #endif

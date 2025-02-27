@@ -39,3 +39,35 @@ void	print_token_list(t_list *list)
 		current = current->next;
 	}
 }
+
+void	print_command(t_command *cmd)
+{
+	int	i;
+
+	if (!cmd)
+		return ;
+	printf("Command:\n");
+	printf("  Args: ");
+	if (cmd->args)
+	{
+		i = 0;
+		while (cmd->args[i] != NULL)
+		{
+			printf("%s ", cmd->args[i]);
+			i++;
+		}
+	}
+	printf("\n");
+	printf("  Input File: %s\n", cmd->input_file ? cmd->input_file : "(null)");
+	printf("  Output File: %s\n",
+		cmd->output_file ? cmd->output_file : "(null)");
+}
+
+void	print_ast(t_ast *ast)
+{
+	if (!ast)
+		return ;
+	printf("Abstract Syntax Tree:\n");
+	print_command(ast->pipeline); // Just print first command
+	printf("Background: %s\n", ast->background ? "yes" : "no");
+}
